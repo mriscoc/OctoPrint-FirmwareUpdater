@@ -6,8 +6,6 @@ Binary File ransfer is an alternative method to transfer the `firmware.bin` file
 
 ## Table of Contents
 1. [Warnings and Caveats](#warnings-and-caveats)
-1. [Installation](#installation)
-   1. [Marlin Binary Protocol Package](#marlin-binary-protocol-package)
 1. [Marlin Configuration](#marlin-configuration)
    1. [Enable Binary File Transfer](#enable-the-binary-file-transfer-protocol)
    1. [Set SDCARD_CONNECTION to ONBOARD](#set-sdcard_connection-to-onboard)
@@ -20,7 +18,7 @@ Binary File ransfer is an alternative method to transfer the `firmware.bin` file
 ## Warnings and Caveats
 1. **The binary file transfer protocol is still work in progress**
 
-   While the current implementation works, it **will** change, and these changes **will** break the current version.  As much as possible, I will try to support the current implementation and the final version, but my ability to do so may be limited due to dependencies on other libraries.  
+   While the current implementation works, it **will** change, and these changes **will** break the current version.  As much as possible, I will try to support the current implementation and the final version, but my ability to do so may be limited due to dependencies on other libraries.
 
    If it comes to a choice, the final version will be the one which is supported.
 
@@ -31,33 +29,7 @@ Binary File ransfer is an alternative method to transfer the `firmware.bin` file
    On my test system, with the old reset code, I would easily crash my Pi anywhere between 1-25 resets.  After the change I have flashed the board dozens of times and reset it 500+ times without crashing it.
 
    That said, the underlying bug still exists, so you may still experience your Pi crashing when the board resets.  Caveat emptor.
-   
-## Installation
-### Marlin Binary Protocol Package
-The plugin currently uses the `marlin-binary-protocol` package to implement the transfer protocol.  This package has dependencies on `heatshrink`, which is hard to install automatically due to compatibility issues with Python 2 and Python 3.  For this reason the marlin-binary-protocol package and the heatshrink dependency need to be installed manually using `pip`.
 
-NB: If you are running OctoPrint in a VirtualEnv (as recommended) you need to run the appropriate `pip` commands below inside that environment. For **OctoPi** users, this is `~/oprint/bin/pip` anywhere it says `pip` or `pip3`.
-
-Depending on your system, the command you use to restart OctoPrint may also be different.
-
-#### Python 2
-1. Install `marlin-binary-protocol` - the dependencies just work
-
-    `pip install marlin-binary-protocol`
-1. Restart OctoPrint
-
-   `sudo service octoprint restart`
-   
-#### Python 3
-The version of `marlin-binary-protocol` available on pypi has an unresolved dependency on a deprecated veraion of `heatshrink`. A patched version has been made available instead. See [issue #321](https://github.com/OctoPrint/OctoPrint-FirmwareUpdater/issues/321) for more details.
-
-1. Install `marlin-binary-protocol` from patched package
-
-   `pip install https://github.com/The-EG/marlin-binary-protocol/archive/refs/heads/master.zip`
-1. Restart OctoPrint
-
-   `sudo service octoprint restart`
-   
 ## Marlin Configuration
 ### Enable the Binary File Transfer protocol
 Your printer must have the binary file protocol enabled in order to be able to use the protocol to copy firmware files to your printer.
@@ -86,7 +58,7 @@ To set the SD card to `ONBOARD`, modify the `#define SDCARD_CONNECTION` line in 
 ## Prerequisite Check
 When both prerequisites are satisfied, the `~/.octoprint/logs/octoprint.log` file will contain lines like these shortly after OctoPrint is started and the printer is connected:
 ```
-2021-03-06 09:24:58,000 - octoprint.plugins.firmwareupdater - INFO - Python binproto2 package installed: True
+2021-03-06 09:24:58,000 - octoprint.plugins.firmwareupdater - INFO - Integrated MarlinBinaryProtocol library available: True
 2021-03-06 09:45:10,815 - octoprint.plugins.firmwareupdater - INFO - Setting BINARY_FILE_TRANSFER capability to True
 ```
 
@@ -122,6 +94,6 @@ Two advanced settings must be enabled for Ender 3 V2 boards:
   <img height="550px" alt="Ender 3 V2 Settings" src="../extras/img/ender3v2.png">
 </p>
 
-**NB:** Before attempting to flash the board from the plugin for the first time, put the SD card in a computer and remove any `.bin` files which are on it.  
+**NB:** Before attempting to flash the board from the plugin for the first time, put the SD card in a computer and remove any `.bin` files which are on it.
 
 If flashing from the plugin fails and the plugin displays an error stating that the board reset too quickly check the SD card for `.bin` files and remove any which are present.

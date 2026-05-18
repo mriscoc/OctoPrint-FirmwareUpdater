@@ -31,12 +31,12 @@ The plugin supports a variety of boards, based on the MCU (processor) they have:
 | STM32 32-bit MCUs (DFU Mode) | MKS Rumba 32 | [dfu-util](doc/dfu-util.md) |
 | OpenBLT Bootloader | Any board with the OpenBLT bootloader | [lpc176x](doc/lpc176x.md) or [bootcommander](doc/bootcommander.md) |
 
-Please open a [Github issue](https://github.com/OctoPrint/OctoPrint-FirmwareUpdater/issues) if you would like a new board or MCU to be supported. If it's a new type of board which requires hardware testing please consider making a [donation](#Donations) to help fund the costs.
+Please open a [Github issue](https://github.com/mriscoc/OctoPrint-FirmwareUpdater/issues) if you would like a new board or MCU to be supported. If it's a new type of board which requires hardware testing please consider making a [donation](#Donations) to help fund the costs.
 
 ## Plugin Installation
 Install via the bundled [Plugin Manager](https://github.com/foosel/OctoPrint/wiki/Plugin:-Plugin-Manager)
 or manually using this URL:
-    https://github.com/OctoPrint/OctoPrint-FirmwareUpdater/archive/master.zip
+  https://github.com/mriscoc/OctoPrint-FirmwareUpdater/archive/master.zip
 
 Using OctoPrint's Software Update plugin you can choose one of three Release Channels to follow:
 
@@ -105,7 +105,7 @@ Command lines can be returned to the default by clicking the **Reset** button.
 
 ##### Dfu-programmer
 Erase: `{bossac} -i -p {port} -U true -e -w {disableverify} -b {firmware} -R`
-Flash: 
+Flash:
 
 ### Pre and Post-flash Settings
 
@@ -136,7 +136,7 @@ The flash sequence is:
 | Remember URL | The last URL will be remembered when using 'Flash from URL. |
 
 ## Troubleshooting
-Log messages can be found in the OctoPrint log `octoprint.log` and the Firmware Updater's console log `plugin_firmwareupdater_console.log`.  
+Log messages can be found in the OctoPrint log `octoprint.log` and the Firmware Updater's console log `plugin_firmwareupdater_console.log`.
 
 Both log files can be downloaded from OctoPrint's logging interface, found under 'Logging' in the settings page.
 

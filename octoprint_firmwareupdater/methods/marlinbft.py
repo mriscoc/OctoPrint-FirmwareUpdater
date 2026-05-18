@@ -2,29 +2,29 @@ import os
 import time
 import datetime
 
-binproto2_installed = True
+MarlinBinaryProtocol_installed = True
 try:
-    import binproto2 as mbp
-except:
-    binproto2_installed = False
+    from . import MarlinBinaryProtocol as mbp
+except ImportError:
+    MarlinBinaryProtocol_installed = False
 
 current_port = None
 current_baudrate = None
 current_profile = None
 
-def _check_binproto2(self):
-    global binproto2_installed
-    self._settings.set_boolean(["has_binproto2package"], binproto2_installed)
+def _check_MarlinBinaryProtocol(self):
+    global MarlinBinaryProtocol_installed
+    self._settings.set_boolean(["has_MarlinBinaryProtocolpackage"], MarlinBinaryProtocol_installed)
     self._settings.save()
-    return binproto2_installed
+    return MarlinBinaryProtocol_installed
 
 def _check_marlinbft(self):
-    self._logger.info("Python package 'marlin-binary-protocol' is installed: %s" % (_check_binproto2(self)))
+    self._logger.info("Integrated MarlinBinaryProtocol library available: %s" % (_check_MarlinBinaryProtocol(self)))
     self._logger.info("Marlin BINARY_FILE_TRANSFER capability is enabled: %s" % (self._settings.get_boolean(["has_bftcapability"])))
 
-    if not _check_binproto2(self):
-        self._logger.error("Python package 'marlin-binary-protocol' is not installed")
-        self._send_status("flasherror", subtype="nobinproto2")
+    if not _check_MarlinBinaryProtocol(self):
+        self._logger.error("Integrated MarlinBinaryProtocol library could not be imported")
+        self._send_status("flasherror", subtype="noMarlinBinaryProtocol")
     elif not self._settings.get_boolean(["has_bftcapability"]):
         self._logger.error("Marlin BINARY_FILE_TRANSFER capability is not supported")
         self._send_status("flasherror", subtype="nobftcap")

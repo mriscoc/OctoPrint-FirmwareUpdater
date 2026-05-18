@@ -126,7 +126,7 @@ $(function() {
         self.configMarlinBftUseCustomFilename = ko.observable();
         self.configMarlinBftCustomFilename = ko.observable();
         self.marlinbftHasCapability = ko.observable();
-        self.marlinbftHasBinProto2Package = ko.observable();
+        self.marlinbftHasMarlinBinaryProtocolPackage = ko.observable();
         self.marlinBftRestartWaitDisabled = ko.computed(function() {
             return self.configMarlinBftNoResetWait() || self.configMarlinBftNoRestartWait()
         });
@@ -364,7 +364,7 @@ $(function() {
             }
 
             self.marlinbftHasCapability(self.settingsViewModel.settings.plugins.firmwareupdater.has_bftcapability());
-            self.marlinbftHasBinProto2Package(self.settingsViewModel.settings.plugins.firmwareupdater.has_binproto2package());
+            self.marlinbftHasMarlinBinaryProtocolPackage(self.settingsViewModel.settings.plugins.firmwareupdater.has_MarlinBinaryProtocolpackage());
             self.configDisableFileFilter(self.settingsViewModel.settings.plugins.firmwareupdater.disable_filefilter());
             self.configMaxFirmwareSizeKb(self.settingsViewModel.settings.plugins.firmwareupdater.maximum_fw_size_kb())
             self.pluginVersion(self.settingsViewModel.settings.plugins.firmwareupdater._plugin_version());
@@ -636,8 +636,8 @@ $(function() {
                 alert = gettext("The printer is not connected.");
             }
 
-            if (self.getProfileSetting("flash_method") == "marlinbft" && self.printerState.isReady() && !self.marlinbftHasBinProto2Package()) {
-                alert = gettext("The marlin-binary-protocol Python package is not installed.");
+            if (self.getProfileSetting("flash_method") == "marlinbft" && self.printerState.isReady() && !self.marlinbftHasMarlinBinaryProtocolPackage()) {
+                alert = gettext("The integrated MarlinBinaryProtocol library cannot be imported.");
             }
 
             if (self.getProfileSetting("flash_method") == "marlinbft" && self.printerState.isReady() && !self.marlinbftHasCapability()) {
@@ -773,8 +773,8 @@ $(function() {
                                         message = gettext("Printer does not report support for the Marlin Binary File Transfer protocol.");
                                         break;
                                     }
-                                    case "nobinproto2": {
-                                        message = gettext("Python package 'marlin-binary-protocol' is not installed.");
+                                    case "noMarlinBinaryProtocol": {
+                                        message = gettext("The integrated MarlinBinaryProtocol library cannot be imported.");
                                         break;
                                     }
                                     case "already_flashing": {
@@ -915,7 +915,7 @@ $(function() {
             self.configSaveUrl(self.settingsViewModel.settings.plugins.firmwareupdater.save_url());
             self.configPreventConnectionWhenFlashing(self.settingsViewModel.settings.plugins.firmwareupdater.prevent_connection_when_flashing());
             self.configDisableFileFilter(self.settingsViewModel.settings.plugins.firmwareupdater.disable_filefilter());
-            self.marlinbftHasBinProto2Package(self.settingsViewModel.settings.plugins.firmwareupdater.has_binproto2package());
+            self.marlinbftHasMarlinBinaryProtocolPackage(self.settingsViewModel.settings.plugins.firmwareupdater.has_MarlinBinaryProtocolpackage());
             self.marlinbftHasCapability(self.settingsViewModel.settings.plugins.firmwareupdater.has_bftcapability());
 
             // Load the profile settings

@@ -14,26 +14,26 @@ plugin_package = "octoprint_firmwareupdater"
 plugin_name = "OctoPrint-FirmwareUpdater"
 
 # The plugin's version. Can be overwritten within OctoPrint's internal data via __plugin_version__ in the plugin module
-plugin_version = "1.16.1"
+plugin_version = "2.0.1"
 
 # The plugin's description. Can be overwritten within OctoPrint's internal data via __plugin_description__ in the plugin
 # module
 plugin_description = """Printer Firmware Updater"""
 
 # The plugin's author. Can be overwritten within OctoPrint's internal data via __plugin_author__ in the plugin module
-plugin_author = "Ben Lye and Gina Häußge, based on work by Nicanor Romero Venier"
+plugin_author = "MRiscoC. based on work by Ben Lye and Gina Häußge"
 
 # The plugin's author's mail address.
-plugin_author_email = "ben@lye.co.nz"
+plugin_author_email = "mriscoc@users.noreply.github.com"
 
 # The plugin's homepage URL. Can be overwritten within OctoPrint's internal data via __plugin_url__ in the plugin module
-plugin_url = "https://github.com/OctoPrint/OctoPrint-FirmwareUpdater"
+plugin_url = "https://github.com/mriscoc/OctoPrint-FirmwareUpdater"
 
 # The plugin's license. Can be overwritten within OctoPrint's internal data via __plugin_license__ in the plugin module
 plugin_license = "AGPLv3"
 
 # Any additional requirements besides OctoPrint should be listed here
-plugin_requires = ["pyserial>=3.4"]
+plugin_requires = ["pyserial>=3.4", "heatshrink2>=0.14.0"]
 
 ### --------------------------------------------------------------------------------------------------------------------
 ### More advanced options that you usually shouldn't have to touch follow after this point
@@ -57,7 +57,18 @@ plugin_ignored_packages = []
 # Example:
 #     plugin_requires = ["someDependency==dev"]
 #     additional_setup_parameters = {"dependency_links": ["https://github.com/someUser/someRepo/archive/master.zip#egg=someDependency-dev"]}
-additional_setup_parameters = {}
+additional_setup_parameters = {
+	"python_requires": ">=3.7",
+	"classifiers": [
+		"Programming Language :: Python :: 3",
+		"Programming Language :: Python :: 3.7",
+		"Programming Language :: Python :: 3.8",
+		"Programming Language :: Python :: 3.9",
+		"Programming Language :: Python :: 3.10",
+		"Programming Language :: Python :: 3.11",
+		"Programming Language :: Python :: 3.12",
+	],
+}
 
 ########################################################################################################################
 

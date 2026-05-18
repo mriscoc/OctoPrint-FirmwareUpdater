@@ -82,7 +82,7 @@ class FirmwareupdaterPlugin(octoprint.plugin.BlueprintPlugin,
         self._console_logger.setLevel(logging.DEBUG)
         self._console_logger.propagate = False
 
-        self._logger.info("Python binproto2 package installed: {}".format(marlinbft._check_binproto2(self)))
+        self._logger.info("Integrated MarlinBinaryProtocol library available: {}".format(marlinbft._check_MarlinBinaryProtocol(self)))
 
     #~~ BluePrint API
 
@@ -567,7 +567,7 @@ class FirmwareupdaterPlugin(octoprint.plugin.BlueprintPlugin,
             "enable_profiles": False,
             "save_url": False,
             "has_bftcapability": False,
-            "has_binproto2package": False,
+            "has_MarlinBinaryProtocolpackage": False,
             "disable_filefilter": False,
             "prevent_connection_when_flashing": True,
             "maximum_fw_size_kb": 5120,
@@ -849,7 +849,7 @@ class FirmwareupdaterPlugin(octoprint.plugin.BlueprintPlugin,
                 ],
 
                 # update method: pip
-                pip="https://github.com/OctoPrint/OctoPrint-FirmwareUpdater/archive/{target_version}.zip"
+                pip="https://github.com/mriscoc/OctoPrint-FirmwareUpdater/archive/{target_version}.zip"
             )
         )
 
@@ -862,7 +862,7 @@ class FlashException(Exception):
         self.reason = reason
 
 __plugin_name__ = "Firmware Updater"
-__plugin_pythoncompat__ = ">=2.7,<4"
+__plugin_pythoncompat__ = ">=3.7,<4"
 
 def __plugin_load__():
     global __plugin_implementation__
